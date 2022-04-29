@@ -40,7 +40,7 @@ variable "vpc_cidr" {
 
 variable "subnets_cidr" {
 
-    default = "10.0.0.0/24","10.0.1.0/24"
+    default = "[10.0.0.0/24,10.0.1.0/24]"
     description = "subnet cidr block"
     type = string
 
@@ -50,7 +50,7 @@ variable "subnets_cidr" {
 
 variable "azs" {
 
-    default = "ap-south-1a", "ap-south-1b"
+    default = "[ap-south-1a,ap-south-1b]"
     description = "availability zone"
     type = string
 }
