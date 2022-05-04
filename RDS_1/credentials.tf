@@ -13,3 +13,9 @@ variable "random_password_length" {
   type        = number
   default     = 10
 }
+
+variable "master_password" {
+  description = "Password for the master DB user. Note - when specifying a value here, 'create_random_password' should be set to `false`"
+  type        = string
+  default     = null
+}
