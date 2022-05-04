@@ -10,8 +10,7 @@ resource "aws_db_instance" "demo-mysql-db" {
 
 	db_subnet_group_name	=var.db_subnet_group
 	name			=var.db_subnet_group_name
-	username		=var.username
-	password		=var.password
+	
 	parameter_group_name	=var.db_parameter_group_name
 	availability_zone	=var.azs
 	publicly_accessible	=true	
@@ -22,4 +21,14 @@ resource "aws_db_instance" "demo-mysql-db" {
 		    name ="Demo MySql RDS Instance"
 
 		 }
+
+
+	username		=var.username
+
+	resource "random_password" "master_password" {
+  			count = local.create_cluster && var.create_random_password ? 1 : 0
+
+ 			length  = var.random_password_length
+ 		 	special = false
+}
 }
