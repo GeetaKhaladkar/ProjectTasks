@@ -55,8 +55,6 @@ resource "aws_security_group_rule" "egress" {
   security_group_id = join("", aws_security_group.default.*.id)
 }
 
-# The name "primary" is poorly chosen. We actually mean standalone or regional.
-# The primary cluster of a global database is actually created with the "secondary" cluster resource below.
 resource "aws_rds_cluster" "primary" {
   count                               = local.enabled && local.is_regional_cluster ? 1 : 0
   cluster_identifier                  = var.cluster_identifier == "" ? module.this.id : var.cluster_identifier
@@ -137,8 +135,6 @@ resource "aws_rds_cluster" "primary" {
   deletion_protection             = var.deletion_protection
   replication_source_identifier   = var.replication_source_identifier
 }
-
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#replication_source_identifier
 resource "aws_rds_cluster" "secondary" {
   count                               = local.enabled && ! local.is_regional_cluster ? 1 : 0
   cluster_identifier                  = var.cluster_identifier == "" ? module.this.id : var.cluster_identifier
@@ -201,10 +197,6 @@ resource "aws_rds_cluster" "secondary" {
 
   global_cluster_identifier = var.global_cluster_identifier
 
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#replication_source_identifier
-  # ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
-  # If DB Cluster is part of a Global Cluster, use the lifecycle configuration block ignore_changes argument
-  # to prevent Terraform from showing differences for this argument instead of configuring this value.
 
   lifecycle {
     ignore_changes = [
@@ -319,7 +311,7 @@ locals {
 }
 
 module "dns_master" {
-  source  = "cloudposse/route53-cluster-hostname/aws"
+  source  = "*********************************************"
   version = "0.12.2"
 
   enabled  = local.enabled && length(var.zone_id) > 0
@@ -331,7 +323,7 @@ module "dns_master" {
 }
 
 module "dns_replicas" {
-  source  = "cloudposse/route53-cluster-hostname/aws"
+  source  = "************not mentioned**********"
   version = "0.12.2"
 
   enabled  = local.enabled && length(var.zone_id) > 0 && ! local.is_serverless && local.cluster_instance_count > 0
