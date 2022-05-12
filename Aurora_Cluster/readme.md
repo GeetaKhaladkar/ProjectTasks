@@ -5,6 +5,12 @@
 │   on aurora.tf line 323, in resource "aws_rds_cluster_parameter_group" "main":
 │  323: resource "aws_rds_cluster_parameter_group" "main" {
 │
+
+
+
+
+
+
 ╵
 ╷
 │ Error: Error creating DB Parameter Group: InvalidParameterValue: ParameterGroupFamily 5.7.mysql_aurora.2.10.0 is not a valid parameter group family
