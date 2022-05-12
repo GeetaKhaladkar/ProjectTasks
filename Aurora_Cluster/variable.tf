@@ -30,7 +30,7 @@ variable "replica_count" {
 variable "allowed_security_groups" {
   description = "A list of Security Group ID's to allow access to."
   type        = list(string)
-  default     = ["demo","default"]
+  default     = ["sg-01a71b625120b794c","sg-0c04015fca112decc"]
 }
 
 variable "allowed_cidr_blocks" {
@@ -174,18 +174,18 @@ variable "kms_key_id" {
 variable "engine" {
   description = "Aurora database engine type, currently aurora, aurora-mysql or aurora-postgresql"
   type        = string
-  default     = "aurora"
+  default     = "aurora-mysql"
 }
 
 variable "engine_version" {
   description = "Aurora database engine version."
   type        = string
-  default     = "aurora-mysql"
+  default     = "5.7.12"
 }
 
 variable "engine_parameter_family" {
   description = "The database engine paramater group family"
-  default     = "5.7.mysql_aurora.2.10.0"
+  default     = "aurora-mysql5.7"
 }
 
 variable "enable_http_endpoint" {
