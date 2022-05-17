@@ -8,4 +8,4 @@ variable "stage" {
 
 variable "resource_name" {
 	default = "number"
-} 
+}    
