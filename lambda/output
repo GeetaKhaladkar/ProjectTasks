@@ -1,3 +1,9 @@
+create one python folder
+add [hello-python.py] in folder
+then run code
+
+
+
 terraform init
 terraform plan
 terraform apply
