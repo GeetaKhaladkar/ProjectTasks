@@ -1,0 +1,8 @@
+create one python folder
+add [ hello-python.py] file
+
+run
+terraform init
+terraform plan 
+terraform apply
+terraform destroy
